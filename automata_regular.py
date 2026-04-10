@@ -1,5 +1,5 @@
 def validar_lenguaje_regular(cadena):
-    # Transiciones: (estado_actual, simbolo) -> siguiente_estado
+    # Transiciones: (estado, simbolo) -> siguiente_estado
     transiciones = {
         ('q0', 'a'): 'q0',
         ('q0', 'b'): 'q1',
@@ -8,7 +8,7 @@ def validar_lenguaje_regular(cadena):
     
     estado = 'q0'
     for simbolo in cadena:
-        # se busca la transición en la tabla
+        # obtener el estado siguiente
         estado = transiciones.get((estado, simbolo), 'error') #da error si no existe la transicion
         if estado == 'error':
             break
