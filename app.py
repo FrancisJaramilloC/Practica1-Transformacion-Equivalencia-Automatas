@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, jsonify
-from logic.generador import generar_cadenas
+from back.logic.generador import generar_cadenas
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            template_folder='front/templates', 
+            static_folder='front/static')
 
 @app.route('/')
 def index():

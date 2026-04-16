@@ -21,7 +21,11 @@ Thumbs.db
 *.swo
 
 # Project specific
-backend/
-frontend/
+back/
+front/
 node_modules/
 dist/
+
+# Skills de IA (locales)
+.antigravity/skills/
+!.antigravity/skills/.gitkeep

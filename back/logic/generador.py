@@ -1,8 +1,5 @@
 def generar_cadenas(alfabeto, max_len):
-    """
-    ALGORITMO GenerarCadenas(alfabeto, max_len)
-    Genera todas las cadenas sobre el alfabeto hasta longitud n.
-    """
+    #cadena para inicar el bucle
     resultado = [""]
     
     for i in range(1, max_len + 1):
@@ -11,8 +8,7 @@ def generar_cadenas(alfabeto, max_len):
             for simbolo in alfabeto:
                 nueva_cadena = cadena + simbolo
                 nuevas.append(nueva_cadena)
-        
-        # CONCATENAR resultado CON nuevas
+        # une las cadenas nuevas con las anteriores
         resultado.extend(nuevas)
         
     # eliminar duplicados
