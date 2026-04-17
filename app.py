@@ -21,6 +21,11 @@ def problema1():
     # Ejecutar lógica (Backend puro)
     resultado = generar_cadenas(alfabeto, max_len)
     
+    # Log en terminal solicitado por el usuario
+    print(f"\n--- Cadenas Generadas (Σ={alfabeto}, n={max_len}) ---")
+    print(resultado)
+    print(f"Total: {len(resultado)}\n")
+    
     return jsonify({
         'resultado': resultado,
         'conteo': len(resultado)

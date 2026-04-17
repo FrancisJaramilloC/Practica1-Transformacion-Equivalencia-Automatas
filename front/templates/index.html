@@ -3,44 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automata Learning - Generador</title>
+    <title>Teoría de Automatas </title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <div class="app-container">
-        <header>
-            <h1>Autómata Aprendizaje </h1>
+<body class="loading">
+    <div class="app-wrapper">
+        <header class="hero-section">
+            <h1 class="reveal-text">Automata <span>Aprendizaje</span></h1>
+            <p class="reveal-text subtitle">Generador de cadenas sobre Σ*</p>
         </header>
 
-        <div class="main-content">
-            <div class="card">
-                <h2>Problema 1: Generador</h2>
-                <div class="input-group">
-                    <label>Alfabeto (Σ - separado por comas)</label>
-                    <input type="text" id="alfabeto" value="a, b" placeholder="Ej: 0, 1">
+        <main class="main-grid">
+            <section class="card config-card reveal-up">
+                <div class="card-glow"></div>
+                <div class="card-header">
+                    <span class="step-badge">01</span>
+                    <h2>Configuración</h2>
                 </div>
-                <div class="input-group">
-                    <label>Longitud Máxima (n)</label>
-                    <input type="number" id="max_len" value="3" min="0" max="12">
-                </div>
-                <button id="btn-generar">Generar Cadenas</button>
-            </div>
+                
+                <div class="input-container">
+                    <div class="input-group">
+                        <label for="alfabeto">Alfabeto (Σ)</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="alfabeto" value="minecraft, lol" placeholder="Ej: 0, 1">
+                            <div class="input-focus-border"></div>
+                        </div>
+                        <small>Separado por comas</small>
+                    </div>
 
-            <div class="card results-area">
-                <div class="results-header">
-                    <span id="label-conteo">Cadenas generadas: 0</span>
-                    <span style="color: var(--text-dim); font-size: 0.8rem;">Resultados</span>
-                </div>
-                <div id="results-grid" class="grid">
-                    <!-- Los resultados aparecerán aquí -->
-                    <div style="grid-column: 1 / -1; text-align: center; color: var(--text-dim); margin-top: 2rem;">
-                        Los resultados se mostrarán aquí
+                    <div class="input-group">
+                        <label for="max_len">Longitud Máxima (n)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="max_len" value="3" min="0" max="12">
+                            <div class="input-focus-border"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
+                <button id="btn-generar" class="magnetic-btn">
+                    <span class="btn-text">Generar Cadenas</span>
+                    <span class="btn-glow"></span>
+                </button>
+            </section>
+
+            <section class="card results-card reveal-up" style="--delay: 0.2s">
+                <div class="card-glow"></div>
+                <div class="results-header">
+                    <div class="status-indicator">
+                        <div class="dot pulse"></div>
+                        <span id="label-conteo">Cadenas: 0</span>
+                    </div>
+                    <div class="results-title">Output Dashboard</div>
+                </div>
+                
+                <div id="results-grid" class="results-viewport">
+                    <!-- Los resultados aparecerán aquí con animaciones escalonadas -->
+                    <div class="empty-state">
+                        <p>Los resultados se mostrarán aquí</p>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
+    <!-- GSAP Core & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
