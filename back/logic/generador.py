@@ -13,8 +13,8 @@ def generar_cadenas(alfabeto, max_len):
         
     # eliminar duplicados
     final = []
+
     for elemento in resultado:
         if elemento not in final:
-            final.append(elemento)
-            
+            final.append(elemento)      
     return final

@@ -20,34 +20,155 @@
         <main class="main-grid">
             <section class="card config-card reveal-up">
                 <div class="card-glow"></div>
-                <div class="card-header">
-                    <span class="step-badge">01</span>
-                    <h2>Configuración</h2>
-                </div>
                 
-                <div class="input-container">
-                    <div class="input-group">
-                        <label for="alfabeto">Alfabeto (Σ)</label>
-                        <div class="input-wrapper">
-                            <input type="text" id="alfabeto" value="minecraft, lol" placeholder="Ej: 0, 1">
-                            <div class="input-focus-border"></div>
+                <select id="operation-selector" class="magnetic-btn" style="width: 100%; margin-bottom: 2rem; text-align: left; padding: 1rem; background: rgba(0,0,0,0.4); appearance: none; border: 1px solid var(--border-glass);">
+                    <option value="panel-p1"> Generador de Cadenas (Σ*)</option>
+                    <option value="panel-p2"> Pertenencia de Cadena</option>
+                    <option value="panel-p34"> Unión y Concatenación</option>
+                    <option value="panel-p56">Clausuras (Kleene)</option>
+                    <option value="panel-p7">Análisis de Crecimiento</option>
+                </select>
+
+                <!-- Panel 1 -->
+                <div id="panel-p1" class="op-panel">
+                    <div class="card-header">
+                        <h2>Configuración</h2>
+                    </div>
+                    
+                    <div class="input-container">
+                        <div class="input-group">
+                            <label for="alfabeto">Alfabeto (Σ)</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="alfabeto" value="a, b" placeholder="Ej: a, b">
+                            </div>
+                            <small>Separar por comas</small>
                         </div>
-                        <small>Separado por comas</small>
+
+                        <div class="input-group">
+                            <label for="max_len">Longitud Máxima (n)</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="max_len" value="3" min="0" max="12">
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="input-group">
-                        <label for="max_len">Longitud Máxima (n)</label>
-                        <div class="input-wrapper">
-                            <input type="number" id="max_len" value="3" min="0" max="12">
-                            <div class="input-focus-border"></div>
+                    <button id="btn-generar" class="magnetic-btn">
+                        <span class="btn-text">Generar Cadenas</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                </div>
+
+                <!-- Panel 2 -->
+                <div id="panel-p2" class="op-panel" style="display: none;">
+                    <div class="card-header">
+                        <h2>Pertenencia</h2>
+                    </div>
+
+                    <div class="input-container" style="margin-top: 1rem;">
+                        <div class="input-group">
+                            <label for="cadena_test">Verificar Cadena con el Lenguaje</label>
+                            <div style="display: flex; gap: 10px; align-items: stretch;">
+                                <div class="input-wrapper" style="flex: 1;">
+                                    <input type="text" id="cadena_test" placeholder="Ej: abba">
+                                </div>
+                                <button id="btn-pertenece" class="magnetic-btn" style="width: auto; padding: 0 1.5rem;">
+                                    <span class="btn-text">Verificar</span>
+                                    <span class="btn-glow"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="pertenece-result" style="margin-top: 1rem; font-weight: bold; background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-glass); text-align: center;">
+                        <span style="color: var(--text-dim);">Resultado de membresía aparecerá aquí</span>
+                    </div>
+                </div>
+
+                <!-- Panel 3 & 4 -->
+                <div id="panel-p34" class="op-panel" style="display: none;">
+                    <div class="card-header">
+                        <span class="step-badge">03y04</span>
+                        <h2>Unión y Concatenación</h2>
+                    </div>
+
+                    <div class="input-container" style="margin-top: 1rem;">
+                        <div class="input-group">
+                            <label for="l1_input">Lenguaje 1 (L1)</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="l1_input" placeholder="Ej: a, b, λ" value="a, b, aa">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="l2_input">Lenguaje 2 (L2)</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="l2_input" placeholder="Ej: aa, c, λ" value="b, bb">
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; flex-direction: column;">
+                            <button id="btn-union" class="magnetic-btn">
+                                <span class="btn-text">Unir L1 ∪ L2</span>
+                                <span class="btn-glow"></span>
+                            </button>
+                            <button id="btn-concat" class="magnetic-btn">
+                                <span class="btn-text">Concatenar L1 • L2</span>
+                                <span class="btn-glow"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <button id="btn-generar" class="magnetic-btn">
-                    <span class="btn-text">Generar Cadenas</span>
-                    <span class="btn-glow"></span>
-                </button>
+                <!-- Panel 5 & 6 -->
+                <div id="panel-p56" class="op-panel" style="display: none;">
+                    <div class="card-header">
+                        <h2>Kleene Star y Plus</h2>
+                    </div>
+
+                    <div class="input-container" style="margin-top: 1rem;">
+                        <div class="input-group">
+                            <label for="l_star_input">Lenguaje Base (L)</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="l_star_input" placeholder="Ej: a, bb" value="a, b">
+                            </div>
+                            <small>Separado por comas</small>
+                        </div>
+                        <div class="input-group">
+                            <label for="star_max_iter">Iteraciones (max_iter)</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="star_max_iter" value="3" min="0" max="6">
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; flex-direction: column;">
+                            <button id="btn-kleene" class="magnetic-btn">
+                                <span class="btn-text">Generar L* (Con λ)</span>
+                                <span class="btn-glow"></span>
+                            </button>
+                            <button id="btn-kleene-plus" class="magnetic-btn">
+                                <span class="btn-text">Generar L⁺ (Sin λ)</span>
+                                <span class="btn-glow"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel 7 -->
+                <div id="panel-p7" class="op-panel" style="display: none;">
+                    <div class="card-header">
+                        <h2>Análisis de Crecimiento</h2>
+                    </div>
+
+                    <div class="input-container" style="margin-top: 1rem;">
+                        <div class="input-group">
+                            <label for="l_crecimiento_input">Lenguaje a evaluar (L)</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="l_crecimiento_input" placeholder="Ej: a, bb" value="a, b">
+                            </div>
+                            <small>Separado por comas</small>
+                        </div>
+                        <button id="btn-crecimiento" class="magnetic-btn">
+                            <span class="btn-text">Analizar Crecimiento</span>
+                            <span class="btn-glow"></span>
+                        </button>
+                    </div>
+                </div>
             </section>
 
             <section class="card results-card reveal-up" style="--delay: 0.2s">
@@ -61,7 +182,6 @@
                 </div>
                 
                 <div id="results-grid" class="results-viewport">
-                    <!-- Los resultados aparecerán aquí con animaciones escalonadas -->
                     <div class="empty-state">
                         <p>Los resultados se mostrarán aquí</p>
                     </div>
