@@ -1,1 +1,1 @@
-# Practica1-Transformacion-Equivalencia-Automatas
+# Repo para proyectos de Automatas
